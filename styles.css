@@ -1,0 +1,160 @@
+@keyframes grow-and-shrink {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes play {
+    0% {
+        transform: rotate(-.1turn) scale(.5);
+    }
+    50% {
+        transform: rotate(.1turn) scale(0.75);
+    }
+    100% {
+        transform: rotate(0turn) scale(1);
+    }
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(calc(-100vh))
+    }
+    100% {
+        transform: translateY(0%)
+    }
+}
+
+body {
+    background-image: url('/images/background.png');
+    background-size: cover;
+}
+
+#players {
+    margin: auto;
+    width: min(95%, 600px);
+    display: flex;
+    flex-direction: columns;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.player {
+    margin: 0.5rem;
+    width: 25%;
+    max-width: 10rem;
+    background-size:cover;
+    border: 3px solid black;
+    border-radius: 10%;
+    aspect-ratio: 1 / 1;
+    opacity: 50%;
+}
+
+.player:hover {
+    border-color: white;
+    opacity: 100%;
+}
+
+.player1 {
+    animation: play 0.5s;
+    border-color:  rgb(255, 0, 247);
+    opacity: 100%;
+}
+
+.player1:hover {
+    border-color: rgb(255, 0, 247);
+}
+
+.player2 {
+    animation: play 0.5s;
+    border-color: rgb(0, 255, 106);
+    opacity: 100%;
+}
+
+.player2:hover {
+    border-color: rgb(0, 255, 106);
+}
+
+#game {
+    margin: auto;
+    padding-top: 1rem;
+}
+
+td {
+    background-size:cover;
+    border: 3px solid black;
+    border-radius: 10%;
+    position: relative;
+    z-index: 1
+}
+
+td.unplaced {
+    transform: translate(0, calc(-100vh)); 
+    background-image: url('/images/mysteryblock.jpeg');
+    animation: fall 0.5s linear;
+    animation-fill-mode: forwards;
+}
+
+td.unplaced:hover {
+    border-color: white;
+}
+
+td.placed {
+    animation: play 0.5s;
+    animation-delay: 0s;
+}
+
+td.winner {
+    animation: play 0.5s, grow-and-shrink 0.5s ease-in-out;
+    animation-delay: 0s, 1s;
+    animation-iteration-count: 1, infinite;
+}
+
+.hidden {
+    display: none
+}
+
+.button-group {
+    display: flex;
+    width: 50vw;
+    height: 5rem;
+    margin: auto;
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 800px) {
+    .button-group {
+      width: 90vw;
+    }
+}
+
+button {
+    flex: 50%;
+    margin: 0.5rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-color: rgba(0, 0, 0, 0.526);
+}
+
+button:hover {
+    border-color: white;
+}
+
+#restartbutton {
+    background-image: url('/images/restart.png');
+} 
+
+#startbutton {
+    background-image: url('/images/start.png');
+}
+
+#menubutton {
+    background-image: url('/images/menu.png');
+}
