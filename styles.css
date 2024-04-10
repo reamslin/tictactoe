@@ -32,7 +32,7 @@
 }
 
 body {
-    background-image: url('/images/background.png');
+    background-image: url('images/background.png');
     background-size: cover;
 }
 
@@ -96,7 +96,7 @@ td {
 
 td.unplaced {
     transform: translate(0, calc(-100vh)); 
-    background-image: url('/images/mysteryblock.jpeg');
+    background-image: url('images/mysteryblock.jpeg');
     animation: fall 0.5s linear;
     animation-fill-mode: forwards;
 }
@@ -148,13 +148,13 @@ button:hover {
 }
 
 #restartbutton {
-    background-image: url('/images/restart.png');
+    background-image: url('images/restart.png');
 } 
 
 #startbutton {
-    background-image: url('/images/start.png');
+    background-image: url('images/start.png');
 }
 
 #menubutton {
-    background-image: url('/images/menu.png');
+    background-image: url('images/menu.png');
 }

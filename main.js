@@ -62,7 +62,7 @@ class GameController {
     }
 
     start() {
-        this.cat = new Player('Cat', '/images/cat.jpeg');
+        this.cat = new Player('Cat', 'images/cat.jpeg');
         this.gameboard = new Gameboard(this.player1, this.player2, this.cat);
     }
 

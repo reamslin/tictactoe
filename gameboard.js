@@ -116,8 +116,8 @@ class Gameboard {
         )
     }
 
-    get spacesToUpperLeft() {
-        return this.spacesTo("left", "down");
+    get spacesToLowerRight() {
+        return this.spacesTo("right", "down");
     }
 
     get spacesToLowerLeft() {
