@@ -1,8 +1,8 @@
 import Play from "./play.js"
 
 const IN_A_ROW = 3;
-const WIDTH = 4;
-const HEIGHT = 5;
+const WIDTH = 3;
+const HEIGHT = 3;
 
 const INIT_GAMEBOARD = () => Array(WIDTH).fill(null).map(() => Array(HEIGHT).fill(null))
 
