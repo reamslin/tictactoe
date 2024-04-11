@@ -111,7 +111,7 @@ class GameController {
           this[setting] = previousValue - 1;
           button.nextElementSibling.innerText = previousValue - 1;
         }
-        this.inarow = Math.min(this.inarow, this.width, this.height);
+        this.inarow = Math.min(this.inarow, Math.max(this.width, this.height));
         document.getElementById(
           "inarow"
         ).firstElementChild.nextElementSibling.innerText = this.inarow;
