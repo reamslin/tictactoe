@@ -33,8 +33,10 @@ class Gameboard {
         row.appendChild(cell);
         cell.id = `space:${j}-${i}`;
         cell.classList.add("unplaced");
-        cell.style.width = `min(calc(85vw / ${this.width}), calc(60vh / ${this.height})`;
-        cell.style.height = `min(calc(85vw / ${this.width}), calc(60vh / ${this.height})`;
+        cell.style.width = `min(calc(85vw / ${this.width}), calc(70vh / ${this.height})`;
+        cell.style.height = cell.style.width;
+        this.element.style.width = cell.style.width * this.width;
+        this.element.style.aspectRatio = `${this.width} / ${this.height}`;
         cell.style.animationDelay = `${
           (this.height - (i + j / this.width)) / 4
         }s`;
@@ -56,7 +58,7 @@ class Gameboard {
     this.lastPlay = play;
     this.spaces[play.x][play.y] = play.player;
 
-    if (this.isOver()) {
+    if (this.isOver) {
       if (this.winner) {
         this.showWinner();
       }
@@ -75,7 +77,7 @@ class Gameboard {
     ];
   }
 
-  isOver() {
+  get isOver() {
     if (this.plays < this.inarow) {
       return false;
     } else if (

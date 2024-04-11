@@ -169,7 +169,6 @@ td {
   background-size: cover;
   border: 3px solid black;
   border-radius: 10%;
-  position: relative;
   z-index: 1;
 }
 
