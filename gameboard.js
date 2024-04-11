@@ -1,198 +1,202 @@
-import Play from "./play.js"
-
-const IN_A_ROW = 3;
-const WIDTH = 3;
-const HEIGHT = 3;
-
-const INIT_GAMEBOARD = () => Array(WIDTH).fill(null).map(() => Array(HEIGHT).fill(null))
+import Play from "./play.js";
 
 class Gameboard {
-    constructor(player1, player2, cat) {
-        this.player1 = player1;
-        this.player2 = player2;
-        this.cat = cat;
-        this.spaces = INIT_GAMEBOARD();
-        this.currentPlayer = player1;
-        this.nextPlayer = player2;
-        this.plays = 0;
-        this.drawBoard();
+  constructor(player1, player2, cat, width, height, inarow) {
+    this.cat = cat;
+    this.width = width;
+    this.height = height;
+    this.spaces = this.initGameboard();
+    this.currentPlayer = player1;
+    this.nextPlayer = player2;
+    this.plays = 0;
+    this.inarow = inarow;
+    console.log(this.width, this.height, this.inarow);
+    this.drawBoard();
+  }
+
+  initGameboard() {
+    return Array(this.width)
+      .fill(null)
+      .map(() => Array(this.height).fill(null));
+  }
+
+  get element() {
+    return document.getElementById("game");
+  }
+
+  drawBoard() {
+    for (let i = 0; i < this.height; i++) {
+      let row = document.createElement("tr");
+      this.element.appendChild(row);
+      for (let j = 0; j < this.width; j++) {
+        let cell = document.createElement("td");
+        row.appendChild(cell);
+        cell.id = `space:${j}-${i}`;
+        cell.classList.add("unplaced");
+        cell.style.width = `min(calc(85vw / ${this.width}), calc(60vh / ${this.height})`;
+        cell.style.height = `min(calc(85vw / ${this.width}), calc(60vh / ${this.height})`;
+        cell.style.animationDelay = `${
+          (this.width - (i + j / this.height)) / 4
+        }s`;
+        cell.addEventListener("click", this.clickEventListener(j, i));
+      }
     }
+  }
 
-    get element() {
-        return document.getElementById('game');
-    }
+  clickEventListener(x, y) {
+    return () => {
+      if (this.spaces[x][y] || this.winner || this.tie) return;
 
-    drawBoard() {
-        for (let i = 0; i < WIDTH; i++) {
-            let row = document.createElement('tr');
-            this.element.appendChild(row);
-            for (let j = 0; j < HEIGHT; j++) {
-                let cell = document.createElement('td');
-                row.appendChild(cell)
-                cell.id = `spaces${i}-${j}`
-                cell.classList.add('unplaced');
-                cell.style.width = `min(calc(90vw / ${WIDTH}), calc(70vh / ${HEIGHT})`;
-                cell.style.height = `min(calc(90vw / ${WIDTH}), calc(70vh / ${HEIGHT})`;;
-                cell.style.animationDelay = `${((WIDTH - (i + j/HEIGHT))/4)}s`
-                cell.addEventListener("click", this.clickEventListener(i,j))
-            }
-        }
-    }
+      let play = new Play(x, y, this.currentPlayer, this.plays++);
+      this.handlePlay(play);
+    };
+  }
 
-    clickEventListener(x,y) {
-        return () => {        
-            if (this.spaces[x][y] || this.winner || this.tie) return;
+  handlePlay(play) {
+    this.lastPlay = play;
+    this.spaces[play.x][play.y] = play.player;
 
-            let play = new Play(x, y, this.currentPlayer);
-            this.handlePlay(play);  
-        }
-    }
-
-    handlePlay(play) {
-        this.lastPlay = play;
-        this.spaces[play.x][play.y] = play.player;
-        this.plays++
-
-        if (this.isOver()) {
-            if (this.winner) {
-                this.showWinner();
-            } 
-            if (this.tie) {
-                this.showTie();
-            }
-        } else {
-            this.switchPlayers();
-        }
-    }
-
-    switchPlayers() {
-        [this.currentPlayer, this.nextPlayer] = [this.nextPlayer, this.currentPlayer]
-    }
-    
-    isOver() {
-        if (this.plays < IN_A_ROW){
-            return false;
-        } else if (this.checkDiagonal() || this.checkVertical() || this.checkHorizontal()) {
-            this.winner = this.lastPlay.player;
-            return true;
-        } else if (this.plays >= WIDTH * HEIGHT) {
-            this.tie = true;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    showWinner() {
-        this.lastPlay.drawWinner();
-    }
-
-    showTie() {
-        this.lastPlay.player = this.cat;
+    if (this.isOver()) {
+      if (this.winner) {
         this.showWinner();
+      }
+      if (this.tie) {
+        this.showTie();
+      }
+    } else {
+      this.switchPlayers();
     }
+  }
 
-    clearBoard() {
-        while(this.element.firstChild){
-            this.element.removeChild(this.element.firstChild);
-        }
+  switchPlayers() {
+    [this.currentPlayer, this.nextPlayer] = [
+      this.nextPlayer,
+      this.currentPlayer,
+    ];
+  }
+
+  isOver() {
+    if (this.plays < this.inarow) {
+      return false;
+    } else if (
+      this.checkDiagonal() ||
+      this.checkVertical() ||
+      this.checkHorizontal()
+    ) {
+      this.winner = this.lastPlay.player;
+      return true;
+    } else if (this.plays >= this.width * this.height) {
+      this.tie = true;
+      return true;
+    } else {
+      return false;
     }
+  }
 
-    checkDiagonal() {
-        return (
-            this.spacesToUpperRight + this.spacesToLowerLeft + 1 >= IN_A_ROW
-            || this.spacesToUpperLeft + this.spacesToLowerRight + 1 >= IN_A_ROW
-        )
+  showWinner() {
+    this.lastPlay.drawWinner();
+  }
+
+  showTie() {
+    this.lastPlay.player = this.cat;
+    this.showWinner();
+  }
+
+  clearBoard() {
+    while (this.element.firstChild) {
+      this.element.removeChild(this.element.firstChild);
     }
-    checkHorizontal() {
-        return (
-            this.spacesToRight + this.spacesToLeft + 1 == IN_A_ROW
-        )
-    }
+  }
 
-    checkVertical() {
-        return (
-            this.spacesToLower + this.spacesToUpper + 1 == IN_A_ROW 
-        )
-    }
+  checkDiagonal() {
+    return (
+      this.spacesToUpperRight + this.spacesToLowerLeft + 1 >= this.inarow ||
+      this.spacesToUpperLeft + this.spacesToLowerRight + 1 >= this.inarow
+    );
+  }
+  checkHorizontal() {
+    return this.spacesToRight + this.spacesToLeft + 1 == this.inarow;
+  }
 
-    get spacesToLowerRight() {
-        return this.spacesTo("right", "down");
-    }
+  checkVertical() {
+    return this.spacesToLower + this.spacesToUpper + 1 == this.inarow;
+  }
 
-    get spacesToLowerLeft() {
-        return this.spacesTo("left", "down");
-    }
+  get spacesToLowerRight() {
+    return this.spacesTo("right", "down");
+  }
 
-    get spacesToUpperLeft() {
-        return this.spacesTo("left", "up");
-    }
+  get spacesToLowerLeft() {
+    return this.spacesTo("left", "down");
+  }
 
-    get spacesToUpperRight() {
-        return this.spacesTo("right", "up");
-    }
+  get spacesToUpperLeft() {
+    return this.spacesTo("left", "up");
+  }
 
-    get spacesToLeft() {
-        return this.spacesTo("left", "none");
-    }
+  get spacesToUpperRight() {
+    return this.spacesTo("right", "up");
+  }
 
-    get spacesToRight() {
-        return this.spacesTo("right", "none");
-    }
+  get spacesToLeft() {
+    return this.spacesTo("left", "none");
+  }
 
-    get spacesToLower() {
-        return this.spacesTo("none", "down");
-    }
+  get spacesToRight() {
+    return this.spacesTo("right", "none");
+  }
 
-    get spacesToUpper() {
-        return this.spacesTo("none", "up");
-    }
+  get spacesToLower() {
+    return this.spacesTo("none", "down");
+  }
 
-    spacesTo(xDir, yDir) {
-        let {x, y, player} = this.lastPlay;
+  get spacesToUpper() {
+    return this.spacesTo("none", "up");
+  }
 
-        let bumpY = { 
-            "up"   : () => y--, 
-            "down" : () => y++, 
-            "none" : () => y,
-        }[yDir];
+  spacesTo(xDir, yDir) {
+    let { x, y, player } = this.lastPlay;
 
-        let bumpX = { 
-            "left"  : () => x--, 
-            "right" : () => x++, 
-            "none"  : () => x,
-        }[xDir];
+    let bumpY = {
+      up: () => y--,
+      down: () => y++,
+      none: () => y,
+    }[yDir];
 
-        let yCondition = { 
-            "up"    : () => y >= 0, 
-            "down"  : () => y < HEIGHT, 
-            "none"  : () => true,
-        }[yDir];
+    let bumpX = {
+      left: () => x--,
+      right: () => x++,
+      none: () => x,
+    }[xDir];
 
-        let xCondition = {
-            "left"  : () => x >= 0,
-            "right" : () => x < WIDTH,
-            "none"  : () => true,
-        }[xDir];
+    let yCondition = {
+      up: () => y >= 0,
+      down: () => y < this.height,
+      none: () => true,
+    }[yDir];
 
-        let spaces = 0;
-        
+    let xCondition = {
+      left: () => x >= 0,
+      right: () => x < this.width,
+      none: () => true,
+    }[xDir];
+
+    let spaces = 0;
+
+    bumpY();
+    bumpX();
+    while (yCondition() && xCondition()) {
+      if (this.spaces[x][y] === player) {
+        spaces++;
         bumpY();
         bumpX();
-        while (yCondition() && xCondition()) {
-            if (this.spaces[x][y] === player) {
-                spaces++
-                bumpY();
-                bumpX();
-            } else {
-                break;
-            }
-        }
-
-        return spaces;
+      } else {
+        break;
+      }
     }
 
+    return spaces;
+  }
 }
-
 
 export default Gameboard;

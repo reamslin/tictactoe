@@ -1,160 +1,252 @@
 @keyframes grow-and-shrink {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.15);
-    }
-    100% {
-        transform: scale(1);
-    }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 @keyframes play {
-    0% {
-        transform: rotate(-.1turn) scale(.5);
-    }
-    50% {
-        transform: rotate(.1turn) scale(0.75);
-    }
-    100% {
-        transform: rotate(0turn) scale(1);
-    }
+  0% {
+    transform: rotate(-0.1turn) scale(0.5);
+  }
+  50% {
+    transform: rotate(0.1turn) scale(0.75);
+  }
+  100% {
+    transform: rotate(0turn) scale(1);
+  }
 }
 
 @keyframes fall {
-    0% {
-        transform: translateY(calc(-100vh))
-    }
-    100% {
-        transform: translateY(0%)
-    }
+  0% {
+    transform: translateY(calc(-100vh));
+  }
+  100% {
+    transform: translateY(0%);
+  }
 }
 
-body {
-    background-image: url('images/background.png');
-    background-size: cover;
+html {
+  background-image: url("images/background.png");
+  background-size: cover;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+}
+
+#title {
+  width: 90%;
+  max-width: 500px;
+}
+
+#chooseyourplayers {
+  height: 2rem;
+  color: white;
+  font-weight: bolder;
 }
 
 #players {
-    margin: auto;
-    width: min(95%, 600px);
-    display: flex;
-    flex-direction: columns;
-    flex-wrap: wrap;
-    justify-content: center;
+  margin: auto;
+  width: 90%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: columns;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#settingsmenu {
+  width: 95%;
+  max-width: 500px;
+  margin: auto;
+}
+
+.setting {
+  padding: 1rem;
+}
+
+.settingcontrol {
+  margin: auto;
+  display: flex;
+  flex-direction: columns;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.settinglabel {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.settingvalue {
+  text-align: center;
+  vertical-align: middle;
+  line-height: 100%;
+  color: white;
+  font-size: 6rem;
+  width: 50%;
+}
+
+.leftarrow {
+  background-image: url("images/leftarrow.png");
+  background-size: cover;
+  background-position: center;
+  width: 25%;
+  max-width: 10rem;
+  aspect-ratio: 1/1;
+}
+
+.rightarrow {
+  background-image: url("images/rightarrow.png");
+  background-size: cover;
+  background-position: center;
+  width: 25%;
+  max-width: 10rem;
+  aspect-ratio: 1/1;
+}
+
+@media (min-width: 800px) {
+  .leftarrow {
+    opacity: 75%;
+  }
+  .rightarrow {
+    opacity: 75%;
+  }
+  .leftarrow:hover {
+    opacity: 100%;
+  }
+  .rightarrow:hover {
+    opacity: 100%;
+  }
 }
 
 .player {
-    margin: 0.5rem;
-    width: 25%;
-    max-width: 10rem;
-    background-size:cover;
-    border: 3px solid black;
-    border-radius: 10%;
-    aspect-ratio: 1 / 1;
-    opacity: 50%;
+  margin: 0.25rem;
+  width: 20%;
+  min-width: 5rem;
+  background-size: cover;
+  border: 3px solid black;
+  border-radius: 10%;
+  aspect-ratio: 1 / 1;
+  opacity: 50%;
 }
 
 .player:hover {
-    border-color: white;
-    opacity: 100%;
+  border-color: white;
+  opacity: 100%;
 }
 
 .player1 {
-    animation: play 0.5s;
-    border-color:  rgb(255, 0, 247);
-    opacity: 100%;
+  animation: play 0.5s;
+  border-color: rgb(255, 0, 247);
+  opacity: 100%;
 }
 
 .player1:hover {
-    border-color: rgb(255, 0, 247);
+  border-color: rgb(255, 0, 247);
 }
 
 .player2 {
-    animation: play 0.5s;
-    border-color: rgb(0, 255, 106);
-    opacity: 100%;
+  animation: play 0.5s;
+  border-color: rgb(0, 255, 106);
+  opacity: 100%;
 }
 
 .player2:hover {
-    border-color: rgb(0, 255, 106);
+  border-color: rgb(0, 255, 106);
 }
 
 #game {
-    margin: auto;
-    padding-top: 1rem;
+  margin: auto;
+  padding-top: 2rem;
 }
 
 td {
-    background-size:cover;
-    border: 3px solid black;
-    border-radius: 10%;
-    position: relative;
-    z-index: 1
+  background-size: cover;
+  border: 3px solid black;
+  border-radius: 10%;
+  position: relative;
+  z-index: 1;
 }
 
 td.unplaced {
-    transform: translate(0, calc(-100vh)); 
-    background-image: url('images/mysteryblock.jpeg');
-    animation: fall 0.5s linear;
-    animation-fill-mode: forwards;
+  transform: translate(0, calc(-100vh));
+  background-image: url("images/mysteryblock.jpeg");
+  animation: fall 0.5s linear;
+  animation-fill-mode: forwards;
 }
 
 td.unplaced:hover {
-    border-color: white;
+  border-color: white;
 }
 
 td.placed {
-    animation: play 0.5s;
-    animation-delay: 0s;
+  animation: play 0.5s;
+  animation-delay: 0s;
 }
 
 td.winner {
-    animation: play 0.5s, grow-and-shrink 0.5s ease-in-out;
-    animation-delay: 0s, 1s;
-    animation-iteration-count: 1, infinite;
+  animation: play 0.5s, grow-and-shrink 0.5s ease-in-out;
+  animation-delay: 0s, 1s;
+  animation-iteration-count: 1, infinite;
 }
 
 .hidden {
-    display: none
+  display: none;
 }
 
 .button-group {
-    display: flex;
-    width: 50vw;
-    height: 5rem;
-    margin: auto;
-    margin-top: 0.5rem;
+  display: flex;
+  width: 40%;
+  height: 5rem;
+  margin: auto;
+  margin-top: 2rem;
 }
 
-@media (max-width: 800px) {
-    .button-group {
-      width: 90vw;
-    }
+@media (max-width: 500px) {
+  .button-group {
+    width: 90vw;
+  }
 }
 
 button {
-    flex: 50%;
-    margin: 0.5rem;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: 50%;
-    background-color: rgba(0, 0, 0, 0.526);
+  flex: 25%;
+  margin: 0.5rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-color: rgba(0, 0, 0, 0.526);
 }
 
 button:hover {
-    border-color: white;
+  border-color: white;
 }
 
 #restartbutton {
-    background-image: url('images/restart.png');
-} 
+  background-image: url("images/restart.png");
+}
 
 #startbutton {
-    background-image: url('images/start.png');
+  background-image: url("images/start.png");
+}
+
+#startbutton.disabled {
+  opacity: 50%;
+  border: none;
 }
 
 #menubutton {
-    background-image: url('images/menu.png');
+  background-image: url("images/menu.png");
+}
+
+#settingsbutton {
+  background-image: url("images/settings.png");
+}
+
+#savebutton {
+  background-image: url("images/save.png");
 }
