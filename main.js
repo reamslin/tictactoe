@@ -2,11 +2,14 @@ import Gameboard from "./gameboard.js";
 import Player from "./player.js";
 import players from "./players.js";
 
+const SIZE_MAX = 15;
+const SIZE_DEFAULT = 3;
+
 class GameController {
   constructor() {
-    this.width = 3;
-    this.height = 3;
-    this.inarow = 3;
+    this.width = SIZE_DEFAULT;
+    this.height = SIZE_DEFAULT;
+    this.inarow = SIZE_DEFAULT;
     this.initButtons();
     this.drawPlayers();
     this.mainMenuElement.classList.toggle("hidden");
@@ -127,7 +130,7 @@ class GameController {
             this[setting] = previousValue + 1;
             button.previousElementSibling.innerText = previousValue + 1;
           }
-        } else if (previousValue < 6) {
+        } else if (previousValue < SIZE_MAX) {
           this[setting] = previousValue + 1;
           button.previousElementSibling.innerText = previousValue + 1;
         }

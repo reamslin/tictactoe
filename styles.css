@@ -164,7 +164,9 @@ html {
   margin: auto;
   padding-top: 2rem;
 }
-
+table {
+  aspect-ratio: 1/1;
+}
 td {
   background-size: cover;
   border: 3px solid black;
