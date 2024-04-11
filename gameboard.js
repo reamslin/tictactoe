@@ -36,7 +36,7 @@ class Gameboard {
         cell.style.width = `min(calc(85vw / ${this.width}), calc(60vh / ${this.height})`;
         cell.style.height = `min(calc(85vw / ${this.width}), calc(60vh / ${this.height})`;
         cell.style.animationDelay = `${
-          (this.width - (i + j / this.height)) / 4
+          (this.height - (i + j / this.width)) / 4
         }s`;
         cell.addEventListener("click", this.clickEventListener(j, i));
       }
