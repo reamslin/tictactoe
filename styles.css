@@ -170,6 +170,7 @@ td {
   background-size: cover;
   border: solid black;
   border-radius: 10%;
+  position: relative;
   z-index: 1;
 }
 
