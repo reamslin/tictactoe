@@ -33,7 +33,7 @@ class Gameboard {
         row.appendChild(cell);
         cell.id = `space:${j}-${i}`;
         cell.classList.add("unplaced");
-        cell.style.width = `min(calc(85vw / ${this.width}), calc(70vh / ${this.height})`;
+        cell.style.width = `min(calc(85vw / ${this.width}), calc(60vh / ${this.height})`;
         cell.style.height = cell.style.width;
         this.element.style.width = cell.style.width * this.width;
         this.element.style.aspectRatio = `${this.width} / ${this.height}`;

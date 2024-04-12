@@ -44,19 +44,10 @@ html {
 }
 
 #chooseyourplayers {
-  height: 2rem;
+  height: 2vh;
+  margin: 1vh;
   color: white;
   font-weight: bolder;
-}
-
-#players {
-  margin: auto;
-  width: 90%;
-  max-width: 800px;
-  display: flex;
-  flex-direction: columns;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
 #settingsmenu {
@@ -66,7 +57,7 @@ html {
 }
 
 .setting {
-  padding: 1rem;
+  padding: 2vh;
 }
 
 .settingcontrol {
@@ -79,7 +70,7 @@ html {
 
 .settinglabel {
   text-align: center;
-  font-size: 2rem;
+  font-size: 4vh;
 }
 
 .settingvalue {
@@ -87,7 +78,7 @@ html {
   vertical-align: middle;
   line-height: 100%;
   color: white;
-  font-size: 6rem;
+  font-size: 12vh;
   width: 50%;
 }
 
@@ -124,10 +115,20 @@ html {
   }
 }
 
+#players {
+  margin: auto;
+  width: 90%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .player {
-  margin: 0.25rem;
+  margin: 0.5vh;
   width: 20%;
-  min-width: 5rem;
+  min-width: min(7rem, 20vw);
   background-size: cover;
   border: 3px solid black;
   border-radius: 10%;
@@ -162,12 +163,12 @@ html {
 
 #game {
   margin: auto;
-  padding-top: 2rem;
+  padding-top: 5vh;
 }
 
 td {
   background-size: cover;
-  border: 3px solid black;
+  border: solid black;
   border-radius: 10%;
   z-index: 1;
 }
@@ -201,9 +202,9 @@ td.winner {
 .button-group {
   display: flex;
   width: 40%;
-  height: 5rem;
+  height: 10vh;
   margin: auto;
-  margin-top: 2rem;
+  margin-top: 4vh;
 }
 
 @media (max-width: 500px) {
@@ -214,7 +215,7 @@ td.winner {
 
 button {
   flex: 25%;
-  margin: 0.5rem;
+  margin: 1vh;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: 50%;
