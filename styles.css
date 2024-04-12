@@ -31,11 +31,13 @@
   }
 }
 
-html {
+body {
   background-image: url("images/background.png");
   background-size: cover;
+  height: 100%;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
+  overflow: hidden;
 }
 
 #title {
@@ -250,4 +252,29 @@ button:hover {
 
 #savebutton {
   background-image: url("images/save.png");
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 2vh;
+  background: rgba(0, 0, 0, 0.526);
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+  color: rgb(154, 154, 154);
+}
+
+.footer {
+  line-height: 2vh;
+  vertical-align: middle;
+  font-family: monospace;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+a {
+  color: white;
+  font-family: "Courier New", Courier, monospace;
 }
