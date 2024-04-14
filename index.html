@@ -1,0 +1,74 @@
+<html>
+  <head>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <a href="https://www.textstudio.com/"></a>
+  </head>
+  <body>
+    <div id="mainmenu" class="hidden">
+      <div id="title"></div>
+      <div id="chooseyourplayers">Choose your players</div>
+      <div id="players"></div>
+      <div class="button-group">
+        <button id="startbutton" class="disabled" disabled></button>
+        <button id="settingsbutton"></button>
+      </div>
+    </div>
+
+    <div id="settingsmenu" class="hidden">
+      <div class="setting">
+        <div class="settinglabel">WIDTH</div>
+        <div id="width" class="settingcontrol">
+          <div class="leftarrow"></div>
+          <div class="settingvalue">3</div>
+          <div class="rightarrow"></div>
+        </div>
+      </div>
+      <div class="setting">
+        <div class="settinglabel">HEIGHT</div>
+        <div id="height" class="settingcontrol">
+          <div class="leftarrow"></div>
+          <div class="settingvalue">3</div>
+          <div class="rightarrow"></div>
+        </div>
+      </div>
+      <div class="setting">
+        <div class="settinglabel">IN A ROW</div>
+        <div id="inarow" class="settingcontrol">
+          <div class="leftarrow"></div>
+          <div class="settingvalue">3</div>
+          <div class="rightarrow"></div>
+        </div>
+      </div>
+      <div class="button-group">
+        <button id="savebutton"></button>
+      </div>
+    </div>
+
+    <table id="game"></table>
+
+    <div id="gamemenu" class="hidden">
+      <div class="button-group">
+        <button <button id="restartbutton"></button>
+        <button id="menubutton"></button>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer">
+        Created by:
+        <a
+          href="https://github.com/reamslin"
+          target="_blank"
+          rel="noopener noreferrer"
+          >reamslin</a
+        >
+      </div>
+    </footer>
+
+    <script type="module" src="./bundle.js"></script>
+  </body>
+  <html></html>
+</html>
