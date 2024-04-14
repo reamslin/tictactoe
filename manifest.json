@@ -1,0 +1,41 @@
+{
+  "icons": [
+    {
+      "src": "icon_512x512.7345c5ecc25354a22d7138256ba0d971.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icon_384x384.2999f25763b4c954ca0d886f6e6e3a9d.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "icon_256x256.2ba2bf8dfbf811ec0ac0593cdcb7ddb0.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "icon_192x192.520e4789aa179a4cdbbc487194704c2f.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon_128x128.74f39416f01433b3581184688e5f8e8a.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "icon_96x96.7bdecb128a3639bdfb6e76414d9cf85c.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ],
+  "name": "TicTacToe",
+  "short_name": "TTT",
+  "orientation": "portrait",
+  "display": "fullscreen",
+  "start_url": ".",
+  "description": "Super Tic Tac",
+  "background_color": "#ffffff"
+}
